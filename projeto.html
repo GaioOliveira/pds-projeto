@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Estudos Interativo: Projeto de Sistemas com UML</title>
+
+    <!-- Chosen Palette: IFSP Moodle (Green & Gray palette via Bootstrap custom styles) -->
+    <!-- Application Structure Plan: A single-page application designed as a comprehensive "Course Hub" for students. The architecture is thematic and task-oriented, divided into two main sections: 1) A step-by-step interactive guide for the final project (using a Bootstrap accordion to manage weekly content), and 2) A reference "Diagram Library" (using Bootstrap cards and modals to present detailed info on each UML diagram). This structure was chosen to transform static course documents into a guided, interactive learning path, prioritizing ease of navigation and focused content consumption. -->
+    <!-- Visualization & Content Choices: The main interactive elements are Bootstrap's Accordion and Modal components, powered by Bootstrap's native JS, to present large amounts of information in a digestible, on-demand format. This avoids overwhelming the user with a long scrolling page. Diagram visuals are represented by descriptive image placeholders, adhering to the no-SVG/Mermaid constraint. The color scheme is customized to match the institution's branding for a seamless user experience within the Moodle environment. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa; /* Light gray background */
+        }
+        :root {
+            --ifsp-green: #198754;
+            --ifsp-green-dark: #146c43;
+            --ifsp-gray: #6c757d;
+        }
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0,0,0,.05);
+        }
+        .section-title {
+            border-left: 5px solid var(--ifsp-green);
+            padding-left: 1rem;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(25, 135, 84, 0.1);
+            color: var(--ifsp-green-dark);
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+        }
+        .card-link {
+            text-decoration: none;
+        }
+        .card-link .card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card-link:hover .card {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-success" href="#"><i class="bi bi-diagram-3-fill me-2"></i>Projeto de Sistemas</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#projeto">O Projeto Final</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#biblioteca">Biblioteca de Diagramas</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container my-5">
+        <!-- Welcome Section -->
+        <section id="welcome" class="text-center mb-5">
+            <h1 class="display-5 fw-bold text-success-emphasis">Guia de Estudos Interativo</h1>
+            <p class="lead text-muted mt-2">Todo o material da disciplina em um só lugar, organizado para guiar seu aprendizado e projeto.</p>
+        </section>
+
+        <!-- Final Project Section -->
+        <section id="projeto" class="mb-5">
+            <h2 class="h2 fw-bold mb-4 section-title">O Projeto Final: Da Ideia à Modelagem</h2>
+            <p class="mb-4">Este é o roteiro que guiará o desenvolvimento do seu projeto final. Cada semana representa um passo na jornada de transformar um problema em uma solução bem documentada.</p>
+            <div class="accordion shadow-sm" id="projectAccordion">
+                <!-- Semana 1 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#week1">
+                            <strong>Semana 1:&nbsp;</strong> A Concepção (Formação da Equipe e Definição do Problema)
+                        </button>
+                    </h2>
+                    <div id="week1" class="accordion-collapse collapse show" data-bs-parent="#projectAccordion">
+                        <div class="accordion-body">
+                            <p>O foco é formar a equipe e encontrar a ideia que guiará todo o seu projeto.</p>
+                            <strong>Objetivos:</strong>
+                            <ul>
+                                <li>Formar a Equipe (dupla ou trio).</li>
+                                <li>Realizar brainstorming de problemas do dia a dia.</li>
+                                <li>Delimitar o escopo do App, resolvendo um problema pequeno de forma eficaz.</li>
+                            </ul>
+                            <strong>Entregável:</strong> Documento de Proposta do Projeto (1 página) contendo nome da equipe, integrantes, nome do App, descrição do problema e da solução.
+                        </div>
+                    </div>
+                </div>
+                <!-- Semana 2 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#week2">
+                            <strong>Semana 2:&nbsp;</strong> A Visão do Usuário (Requisitos e Casos de Uso)
+                        </button>
+                    </h2>
+                    <div id="week2" class="accordion-collapse collapse" data-bs-parent="#projectAccordion">
+                        <div class="accordion-body">
+                            <p>Com a ideia definida, vamos detalhar o que o sistema precisa fazer do ponto de vista de quem vai usá-lo.</p>
+                            <strong>Metodologia:</strong>
+                            <ul>
+                                <li>Escrever Histórias de Usuário no formato: "Como um `<ATOR>`, eu quero `<FAZER ALGO>` para que `<BENEFÍCIO>`."</li>
+                                <li>Modelar o Diagrama de Casos de Uso a partir das histórias.</li>
+                                <li>Escrever a Descrição Textual para os 2 casos de uso mais importantes.</li>
+                            </ul>
+                            <strong>Entregável:</strong> Documento de Requisitos e os artefatos UML (Diagrama e Descrições).
+                        </div>
+                    </div>
+                </div>
+                <!-- Semana 3 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#week3">
+                            <strong>Semana 3:&nbsp;</strong> A Estrutura (Diagrama de Classes)
+                        </button>
+                    </h2>
+                    <div id="week3" class="accordion-collapse collapse" data-bs-parent="#projectAccordion">
+                        <div class="accordion-body">
+                            <p>Agora que sabemos "o quê", vamos definir "quem são as peças" do nosso sistema. Esta é a semana de construir a planta baixa.</p>
+                            <strong>Objetivos:</strong>
+                            <ul>
+                                <li>Identificar as Classes a partir das histórias de usuário.</li>
+                                <li>Detalhar Atributos (privados) e Métodos (públicos), aplicando o encapsulamento.</li>
+                                <li>Modelar os Relacionamentos (Associação, Herança) e definir a multiplicidade.</li>
+                            </ul>
+                            <strong>Entregável:</strong> O Diagrama de Classes completo do sistema.
+                        </div>
+                    </div>
+                </div>
+                <!-- Semana 4 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#week4">
+                            <strong>Semana 4: &nbsp;</strong> O Comportamento (Diagramas de Sequência e Estados)
+                        </button>
+                    </h2>
+                    <div id="week4" class="accordion-collapse collapse" data-bs-parent="#projectAccordion">
+                        <div class="accordion-body">
+                            <p>Com a estrutura definida, vamos mostrar como os objetos colaboram para realizar as tarefas e como o estado deles muda ao longo do tempo.</p>
+                             <strong>Metodologia:</strong>
+                            <ul>
+                                <li>Escolher o caso de uso mais complexo e desenhar o Diagrama de Sequência para seu fluxo principal.</li>
+                                <li>Verificar se alguma classe possui estados claros (ex: "Procurando", "Encontrado", "Devolvido") e, se sim, criar seu Diagrama de Estados.</li>
+                            </ul>
+                            <strong>Entregável:</strong> O Diagrama de Sequência e o Diagrama de Estados (se aplicável).
+                        </div>
+                    </div>
+                </div>
+                <!-- Semana 5 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#week5">
+                            <strong>Semana 5 (Opcional): &nbsp;</strong> Visão Arquitetural e Consolidação
+                        </button>
+                    </h2>
+                    <div id="week5" class="accordion-collapse collapse" data-bs-parent="#projectAccordion">
+                        <div class="accordion-body">
+                            <p>Esta semana é para refinar o trabalho e começar a pensar na organização física do sistema.</p>
+                             <strong>Metodologia:</strong>
+                            <ul>
+                                <li>Esboçar um Diagrama de Componentes simples (ex: `App Mobile`, `API`, `Banco de Dados`).</li>
+                                <li>Desenhar um Diagrama de Implantação mostrando onde os componentes rodariam (ex: `Celular do Usuário`, `Servidor na Nuvem`).</li>
+                            </ul>
+                            <strong>Entregável Final (Consolidado):</strong> Um único "Dossiê de Análise do Projeto" com todos os artefatos criados.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diagram Library Section -->
+        <section id="biblioteca" class="mb-5">
+            <h2 class="h2 fw-bold mb-4 section-title">Biblioteca de Diagramas UML</h2>
+            <p class="mb-4">Consulte rapidamente os conceitos e exemplos dos principais diagramas que estudamos. Clique em um card para ver os detalhes.</p>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <!-- Card Casos de Uso -->
+                <div class="col">
+                    <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#useCaseModal">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title text-success fw-bold"><i class="bi bi-people-fill me-2"></i>Diagrama de Casos de Uso</h5>
+                                <p class="card-text small text-muted">A visão do usuário. Mostra quem interage com o sistema e quais são seus objetivos.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Card Classes -->
+                <div class="col">
+                     <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#classModal">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title text-success fw-bold"><i class="bi bi-bricks me-2"></i>Diagrama de Classes</h5>
+                                <p class="card-text small text-muted">A planta baixa do sistema. Define a estrutura, os "tijolos" (classes) e como se conectam.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Card Sequência -->
+                <div class="col">
+                    <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#sequenceModal">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title text-success fw-bold"><i class="bi bi-bar-chart-steps me-2"></i>Diagrama de Sequência</h5>
+                                <p class="card-text small text-muted">A coreografia dos objetos. Mostra a ordem das interações ao longo do tempo.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                 <!-- Card Estados -->
+                <div class="col">
+                     <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#stateModal">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title text-success fw-bold"><i class="bi bi-recycle me-2"></i>Diagrama de Estados</h5>
+                                <p class="card-text small text-muted">O ciclo de vida de um objeto. Mostra os diferentes status e as transições entre eles.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                 <!-- Card Comunicação -->
+                <div class="col">
+                     <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#communicationModal">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title text-success fw-bold"><i class="bi bi-diagram-2-fill me-2"></i>Diagrama de Comunicação</h5>
+                                <p class="card-text small text-muted">A rede de colaboração. Foca nas conexões e links entre os objetos durante uma interação.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <!-- Use Case Modal -->
+    <div class="modal fade" id="useCaseModal" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title fw-bold text-success-emphasis"><i class="bi bi-people-fill me-2"></i>Diagrama de Casos de Uso</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>Este diagrama é o ponto de partida. Ele define as fronteiras do sistema e responde à pergunta: "O que o sistema faz do ponto de vista do usuário?".</p>
+            <h6>Componentes Principais:</h6>
+            <ul>
+                <li><strong>Ator:</strong> Representa um papel, pessoa ou sistema externo que interage com o sistema (ex: `Aluno`).</li>
+                <li><strong>Caso de Uso:</strong> Uma funcionalidade ou meta que o ator quer alcançar (ex: `Reservar Livro`).</li>
+                <li><strong>Sistema:</strong> A caixa que delimita o que está dentro e fora do escopo.</li>
+            </ul>
+            <img src="./img/exemploCasoDeUso2.PNG" class="img-fluid rounded border" alt="Exemplo de Diagrama de Casos de Uso">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Class Modal -->
+    <div class="modal fade" id="classModal" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title fw-bold text-success-emphasis"><i class="bi bi-bricks me-2"></i>Diagrama de Classes</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>Este diagrama é a planta baixa do sistema. Ele mostra a estrutura estática, as classes, seus atributos, métodos e como se relacionam.</p>
+            <h6>Anatomia de uma Classe:</h6>
+            <ul>
+                <li><strong>Nome:</strong> O nome da classe (ex: `Livro`).</li>
+                <li><strong>Atributos:</strong> As informações que a classe armazena (ex: `- titulo: String`). Use `-` para privado (encapsulamento).</li>
+                <li><strong>Métodos:</strong> As ações que a classe executa (ex: `+ verificarDisponibilidade()`). Use `+` para público.</li>
+            </ul>
+             <h6>Relacionamentos:</h6>
+             <p>Linhas que conectam as classes, com **multiplicidade** (ex: `1..*`) para indicar quantos objetos se relacionam.</p>
+            <img src="./img/diagramaClasses.png" class="img-fluid rounded border" alt="Exemplo de Diagrama de Classes">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Sequence Modal -->
+    <div class="modal fade" id="sequenceModal" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title fw-bold text-success-emphasis"><i class="bi bi-bar-chart-steps me-2"></i>Diagrama de Sequência</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>Mostra a interação entre objetos ao longo do tempo. É a "encenação" de um caso de uso.</p>
+            <h6>Componentes Principais:</h6>
+            <ul>
+                <li><strong>Lifeline:</strong> A linha da vida de um objeto participante.</li>
+                <li><strong>Mensagem:</strong> A comunicação entre objetos, mostrando a chamada de um método.</li>
+                <li><strong>Ativação:</strong> O período em que um objeto está ocupado processando algo.</li>
+                <li><strong>Fragmentos (alt, loop, opt):</strong> Caixas que representam lógicas complexas como `if/else` e `for`.</li>
+            </ul>
+             <img src="./img/DiagramaDeSequenciaRealizarEmprestimo.svg" class="img-fluid rounded border" alt="Exemplo de Diagrama de Sequência">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- State Modal -->
+    <div class="modal fade" id="stateModal" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title fw-bold text-success-emphasis"><i class="bi bi-recycle me-2"></i>Diagrama de Estados</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>Modela o ciclo de vida de um objeto, mostrando os diferentes estados em que ele pode se encontrar e os eventos que causam a mudança de um estado para outro.</p>
+            <h6>Componentes Principais:</h6>
+            <ul>
+                <li><strong>Estado:</strong> Uma condição na vida do objeto (ex: "Ativo", "Atrasado").</li>
+                <li><strong>Transição:</strong> A seta que indica a mudança de estado.</li>
+                <li><strong>Evento [Guarda] / Ação:</strong> O gatilho que causa a transição (ex: `registrarDevolucao() [valorPago >= total] / emitirRecibo()`).</li>
+            </ul>
+            <img src="./img/diagramaDeEstados.PNG" class="img-fluid rounded border" alt="Exemplo de Diagrama de Estados">
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <!-- Communication Modal -->
+    <div class="modal fade" id="communicationModal" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title fw-bold text-success-emphasis"><i class="bi bi-diagram-2-fill me-2"></i>Diagrama de Comunicação</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>Uma alternativa ao Diagrama de Sequência que foca nos links e na colaboração entre os objetos, em vez da ordem temporal.</p>
+            <h6>Diferença Chave:</h6>
+            <p>A ordem das mensagens não é mostrada verticalmente, mas sim através de uma **numeração sequencial** (ex: `1:`, `1.1:`, `2:`).</p>
+            <img src="./img/CommunicationDiagram.drawio.png" class="img-fluid rounded border" alt="Exemplo de Diagrama de Comunicação">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <footer class="text-center py-4 mt-5 bg-light">
+        <p class="mb-0 small text-muted">Material de aula para Projeto e Desenvolvimento de Sistemas.</p>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
